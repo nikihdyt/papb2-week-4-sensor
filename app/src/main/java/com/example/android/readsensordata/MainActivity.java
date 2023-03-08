@@ -1,8 +1,10 @@
 package com.example.android.readsensordata;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -82,11 +84,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         switch (sensorType) {
             case Sensor.TYPE_LIGHT:
                 mTextSensorLight.setText(String.format("Light sensor : %1$.2f", currentValue));
+                changeBackgroundColor(currentValue);
                 break;
             case Sensor.TYPE_PROXIMITY:
                 mTextSensorProximity.setText(String.format("Proximity sensor : %1$.2f", currentValue));
                 break;
         }
+    }
+
+    private void changeBackgroundColor(float currentValue) {
+        ConstraintLayout layout = findViewById(R.id.layout_constraint);
+        if (currentValue <= 40000 && currentValue >= 20000) layout.setBackgroundColor(Color.parseColor("#FFACAC"));
+        else if (currentValue < 20000 & currentValue >= 10) layout.setBackgroundColor(Color.parseColor("#7DB9B6"));
     }
 
     @Override
