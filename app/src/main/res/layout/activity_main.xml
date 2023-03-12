@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layout_constraint"
+    android:padding="24dp"
     tools:context=".MainActivity">
 
     <TextView
@@ -13,6 +14,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        style="@style/Text"
         android:text="Light sensor: %1$.2f"
         />
 
@@ -22,6 +24,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/label_light"
         app:layout_constraintLeft_toLeftOf="parent"
+        style="@style/Text"
         android:text="Proximity sensor: %1$.2f"
         />
 
@@ -31,6 +34,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/label_proximity"
         app:layout_constraintLeft_toLeftOf="parent"
+        style="@style/Text"
         android:text="Ambient temperature sensor: %1$.2f"
         />
 
@@ -40,6 +44,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/label_ambient_temperature"
         app:layout_constraintLeft_toLeftOf="parent"
+        style="@style/Text"
         android:text="Pressure sensor: %1$.2f"
         />
     <TextView
@@ -48,6 +53,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/label_pressure"
         app:layout_constraintLeft_toLeftOf="parent"
+        style="@style/Text"
         android:text="Relative Humidity sensor: %1$.2f"
         />
 
