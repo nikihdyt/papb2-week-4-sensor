@@ -21,9 +21,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager mSensorManager;
     private Sensor mSensorLight;
     private Sensor mSensorProximity;
+    private Sensor mSensorAmbientTemperature;
+    private Sensor mSensorPressure;
+    private Sensor mSensorRelativeHumidity;
 
     private TextView mTextSensorLight;
     private TextView mTextSensorProximity;
+    private TextView mTextSensorAmbientTemperature;
+    private TextView mTextSensorPressure;
+    private TextView mTextSensorRelativeHumidity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +49,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         mTextSensorLight = findViewById(R.id.label_light);
         mTextSensorProximity = findViewById(R.id.label_proximity);
+        mTextSensorAmbientTemperature = findViewById(R.id.label_ambient_temperature);
+        mTextSensorPressure = findViewById(R.id.label_pressure);
+        mTextSensorRelativeHumidity = findViewById(R.id.label_relative_humidity);
 
         mSensorLight = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
         mSensorProximity = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+        mSensorAmbientTemperature = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+        mSensorPressure = mSensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
+        mSensorRelativeHumidity = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
 
         String sensor_error = "No sensor";
 
@@ -54,6 +66,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
         if (mSensorProximity == null) {
             mTextSensorProximity.setText(sensor_error);
+        }
+        if (mSensorAmbientTemperature == null) {
+            mTextSensorAmbientTemperature.setText(sensor_error);
+        }
+        if (mSensorPressure == null) {
+            mTextSensorPressure.setText(sensor_error);
+        }
+        if (mSensorRelativeHumidity == null) {
+            mTextSensorRelativeHumidity.setText(sensor_error);
         }
     }
 
@@ -66,6 +87,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
         if (mSensorLight != null) {
             mSensorManager.registerListener(this, mSensorLight,
+                    SensorManager.SENSOR_DELAY_NORMAL);
+        }
+        if (mSensorAmbientTemperature != null) {
+            mSensorManager.registerListener(this, mSensorAmbientTemperature,
+                    SensorManager.SENSOR_DELAY_NORMAL);
+        }
+        if (mSensorPressure != null) {
+            mSensorManager.registerListener(this, mSensorPressure,
+                    SensorManager.SENSOR_DELAY_NORMAL);
+        }
+        if (mSensorRelativeHumidity != null) {
+            mSensorManager.registerListener(this, mSensorRelativeHumidity,
                     SensorManager.SENSOR_DELAY_NORMAL);
         }
     }
@@ -88,6 +121,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 break;
             case Sensor.TYPE_PROXIMITY:
                 mTextSensorProximity.setText(String.format("Proximity sensor : %1$.2f", currentValue));
+                break;
+            case Sensor.TYPE_AMBIENT_TEMPERATURE:
+                mTextSensorAmbientTemperature.setText(String.format("Ambient temperature sensor : %1$.2f", currentValue));
+                break;
+            case Sensor.TYPE_PRESSURE:
+                mTextSensorPressure.setText(String.format("Pressure sensor : %1$.2f", currentValue));
+                break;
+            case Sensor.TYPE_RELATIVE_HUMIDITY:
+                mTextSensorRelativeHumidity.setText(String.format("Relative Humidity sensor : %1$.2f", currentValue));
                 break;
         }
     }
